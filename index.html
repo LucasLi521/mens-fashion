@@ -6,74 +6,86 @@
 <title>TEMU男装运营策略 | 涨销量三板斧</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--orange:#E67E22;--dark-orange:#D35400;--light-bg:#FFF5EB;--card-bg:#fff;--text:#333;--text-light:#666;--tag-bg:#FFF0E0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--light-bg);color:var(--text);line-height:1.8;scroll-behavior:smooth}
+:root{--orange:#E67E22;--dark:#D35400;--bg:#FFF5EB}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:#333;line-height:1.8;scroll-behavior:smooth}
 nav{position:fixed;top:0;left:0;right:0;background:rgba(230,126,34,0.95);backdrop-filter:blur(10px);z-index:100;padding:0 20px;box-shadow:0 2px 12px rgba(0,0,0,0.15)}
 nav .nav-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
 nav .logo{color:#fff;font-weight:700;font-size:1.1em}
-nav ul{display:flex;list-style:none;gap:5px}
-nav ul li a{color:#fff;text-decoration:none;padding:6px 14px;border-radius:20px;font-size:0.85em;transition:background 0.2s}
+nav ul{display:flex;list-style:none;gap:5px;flex-wrap:wrap}
+nav ul li a{color:#fff;text-decoration:none;padding:6px 12px;border-radius:20px;font-size:0.82em;transition:background 0.2s}
 nav ul li a:hover{background:rgba(255,255,255,0.2)}
-.hero{background:linear-gradient(135deg,#E67E22,#D35400,#C0392B);color:#fff;padding:100px 20px 60px;text-align:center}
-.hero h1{font-size:2.6em;margin-bottom:12px;text-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.hero .subtitle{font-size:1.15em;opacity:0.9;margin-bottom:20px}
-.hero .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
-.hero .badge{background:rgba(255,255,255,0.2);padding:8px 20px;border-radius:25px;font-size:0.9em;border:1px solid rgba(255,255,255,0.3)}
+.hero{background:linear-gradient(135deg,#E67E22,#D35400,#C0392B);color:#fff;padding:100px 20px 50px;text-align:center}
+.hero h1{font-size:2.4em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.hero .sub{font-size:1.1em;opacity:0.9;margin-bottom:8px}
+.hero .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
+.hero .badge{background:rgba(255,255,255,0.2);padding:8px 18px;border-radius:25px;font-size:0.85em;border:1px solid rgba(255,255,255,0.3)}
 .container{max-width:900px;margin:0 auto;padding:40px 20px}
-.section{background:var(--card-bg);border-radius:14px;padding:35px;margin-bottom:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);scroll-margin-top:70px}
-.section h2{color:var(--orange);font-size:1.7em;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.section h2 .num{background:var(--orange);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65em;flex-shrink:0}
-.section .intro{color:var(--text-light);margin-bottom:20px;font-size:0.95em}
+.section{background:#fff;border-radius:14px;padding:35px;margin-bottom:28px;box-shadow:0 2px 16px rgba(0,0,0,0.06);scroll-margin-top:70px}
+.section h2{color:var(--orange);font-size:1.6em;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.section h2 .num{background:var(--orange);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65em;flex-shrink:0}
+.section .intro{color:#666;margin-bottom:20px;font-size:0.93em}
+/* PDF page images */
+.page-gallery{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0}
+.page-card{background:#FAFAFA;border-radius:10px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.08)}
+.page-card .page-label{background:var(--orange);color:#fff;padding:6px 16px;font-size:0.85em;font-weight:600}
+.page-card img{width:100%;display:block;cursor:zoom-in;transition:opacity 0.2s}
+.page-card img:hover{opacity:0.92}
+/* Lightbox */
+.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:200;justify-content:center;align-items:center;flex-direction:column}
+.lightbox.active{display:flex}
+.lightbox img{max-width:92%;max-height:88%;border-radius:8px;box-shadow:0 4px 30px rgba(0,0,0,0.5)}
+.lightbox .close{position:absolute;top:15px;right:25px;color:#fff;font-size:2em;cursor:pointer;line-height:1}
+.lightbox .nav-btn{position:absolute;color:#fff;font-size:2.5em;cursor:pointer;background:rgba(255,255,255,0.1);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lightbox .prev{left:20px}
+.lightbox .next{right:20px}
+.lightbox .counter{color:#fff;margin-top:12px;font-size:0.95em}
+/* Other styles */
 .timeline{position:relative;padding-left:30px;border-left:3px solid var(--orange);margin:20px 0}
-.timeline-item{position:relative;margin-bottom:20px}
+.timeline-item{position:relative;margin-bottom:18px}
 .timeline-item::before{content:'';position:absolute;left:-37px;top:5px;width:12px;height:12px;background:var(--orange);border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--orange)}
-.timeline-item .month{color:var(--orange);font-weight:700;font-size:1.05em;margin-bottom:3px}
-.timeline-item .desc{color:var(--text-light);font-size:0.92em}
+.timeline-item .month{color:var(--orange);font-weight:700;margin-bottom:3px}
+.timeline-item .desc{color:#666;font-size:0.9em}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.tag{background:var(--tag-bg);color:var(--orange);padding:5px 14px;border-radius:20px;font-size:0.82em;font-weight:600}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:20px 0}
-.stat-card{background:linear-gradient(135deg,#FFF5EB,#FFF0E0);border-radius:12px;padding:25px 20px;text-align:center;border:1px solid #FFE4C4}
-.stat-card .number{font-size:2em;color:var(--orange);font-weight:700;margin-bottom:5px}
-.stat-card .label{color:var(--text-light);font-size:0.85em}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;margin:20px 0}
-.step-card{background:#FAFAFA;border-radius:12px;padding:20px;border-left:4px solid var(--orange)}
-.step-card .step-num{color:var(--orange);font-weight:700;font-size:0.85em;margin-bottom:8px}
-.step-card .step-title{font-weight:600;margin-bottom:6px}
-.step-card .step-desc{color:var(--text-light);font-size:0.88em}
-.formula-box{background:linear-gradient(135deg,#FFF5EB,#FFF8F0);border:2px dashed var(--orange);border-radius:12px;padding:25px;margin:20px 0;text-align:center}
-.formula-box .formula{font-size:1.3em;font-weight:700;color:var(--dark-orange);margin:10px 0}
+.tag{background:#FFF0E0;color:var(--orange);padding:5px 14px;border-radius:20px;font-size:0.8em;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin:20px 0}
+.stat-card{background:linear-gradient(135deg,#FFF5EB,#FFF0E0);border-radius:12px;padding:22px 18px;text-align:center;border:1px solid #FFE4C4}
+.stat-card .number{font-size:1.8em;color:var(--orange);font-weight:700;margin-bottom:5px}
+.stat-card .label{color:#666;font-size:0.82em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px;margin:20px 0}
+.step-card{background:#FAFAFA;border-radius:12px;padding:18px;border-left:4px solid var(--orange)}
+.step-card .step-num{color:var(--orange);font-weight:700;font-size:0.8em;margin-bottom:6px}
+.step-card .step-title{font-weight:600;margin-bottom:5px}
+.step-card .step-desc{color:#666;font-size:0.86em}
+.formula-box{background:linear-gradient(135deg,#FFF5EB,#FFF8F0);border:2px dashed var(--orange);border-radius:12px;padding:22px;margin:20px 0;text-align:center}
+.formula-box .formula{font-size:1.25em;font-weight:700;color:var(--dark);margin:10px 0}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px 0}
-.compare-card{border-radius:12px;padding:20px}
+.compare-card{border-radius:12px;padding:18px}
 .compare-card.bad{background:#FFF0F0;border:1px solid #FFCCCC}
 .compare-card.good{background:#F0FFF0;border:1px solid #CCFFCC}
-.compare-card h4{margin-bottom:10px;font-size:1em}
+.compare-card h4{margin-bottom:8px;font-size:0.95em}
 .compare-card.bad h4{color:#C0392B}
 .compare-card.good h4{color:#27AE60}
 .compare-card ul{list-style:none;padding-left:0}
-.compare-card li{padding:4px 0;font-size:0.88em;color:var(--text-light)}
+.compare-card li{padding:3px 0;font-size:0.86em;color:#666}
 .compare-card li::before{margin-right:6px}
 .compare-card.bad li::before{content:'\2717';color:#C0392B;font-weight:bold}
 .compare-card.good li::before{content:'\2713';color:#27AE60;font-weight:bold}
 .error-list{margin:15px 0}
 .error-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F0F0F0}
 .error-item:last-child{border-bottom:none}
-.error-item .icon{font-size:1.5em;flex-shrink:0}
-.error-item .content h4{font-size:0.95em;margin-bottom:3px}
-.error-item .content p{font-size:0.85em;color:var(--text-light)}
-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.88em}
-table th{background:var(--orange);color:#fff;padding:12px;text-align:left;border-radius:6px 6px 0 0}
+.error-item .icon{font-size:1.4em;flex-shrink:0;color:var(--orange);font-weight:700}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.86em}
+table th{background:var(--orange);color:#fff;padding:11px;text-align:left}
 table td{padding:10px 12px;border-bottom:1px solid #F0F0F0}
 table tr:nth-child(even){background:#FAFAFA}
-table tr:hover{background:#FFF5EB}
 .footer{text-align:center;padding:50px 20px 40px;color:#999;font-size:0.85em}
 .footer .divider{width:60px;height:3px;background:var(--orange);margin:0 auto 20px;border-radius:2px}
-@media(max-width:768px){.compare{grid-template-columns:1fr}.hero h1{font-size:1.8em}nav ul{display:none}}
+@media(max-width:768px){.compare{grid-template-columns:1fr}.hero h1{font-size:1.7em}nav ul{display:none}}
 </style>
 </head>
 <body>
 
-<nav>
-<div class="nav-inner">
+<nav><div class="nav-inner">
 <div class="logo">TEMU 男装运营</div>
 <ul>
 <li><a href="#ch1">备货节奏</a></li>
@@ -81,20 +93,16 @@ table tr:hover{background:#FFF5EB}
 <li><a href="#ch3">标题视觉</a></li>
 <li><a href="#ch4">爆款延改</a></li>
 <li><a href="#ch5">流量异常</a></li>
+<li><a href="#pages">PDF原图</a></li>
 </ul>
-</div>
-</nav>
+</div></nav>
 
 <div class="hero">
 <h1>TEMU 男装运营策略</h1>
-<p class="subtitle">从美区秋冬备货节奏规划，到拉美蓝海市场开拓，再到标题视觉优化、爆款延改与流量异常处理</p>
-<p class="subtitle">一站式掌握男装运营核心方法论</p>
+<p class="sub">从美区秋冬备货节奏规划，到拉美蓝海市场开拓，再到标题视觉优化、爆款延改与流量异常处理</p>
+<p class="sub">一站式掌握男装运营核心方法论</p>
 <div class="badges">
-<span class="badge">美区秋冬备货</span>
-<span class="badge">拉美蓝海掘金</span>
-<span class="badge">标题视觉优化</span>
-<span class="badge">爆款延改方法</span>
-<span class="badge">流量异常处理</span>
+<span class="badge">美区秋冬备货</span><span class="badge">拉美蓝海掘金</span><span class="badge">标题视觉优化</span><span class="badge">爆款延改方法</span><span class="badge">流量异常处理</span>
 </div>
 </div>
 
@@ -103,35 +111,14 @@ table tr:hover{background:#FFF5EB}
 <div class="section" id="ch1">
 <h2><span class="num">1</span>美区秋冬备货节奏</h2>
 <p class="intro">从7月到12月，按月规划品类上架节奏，精准踩准每个爆发节点。</p>
-
 <div class="timeline">
-<div class="timeline-item">
-<div class="month">7月 — 薄款清仓期</div>
-<div class="desc">POLO衫、短裤最后清仓窗口。重点：清理夏季库存，为秋冬新品腾出仓储和流量资源。</div>
+<div class="timeline-item"><div class="month">7月 — 薄款清仓期</div><div class="desc">POLO衫、短裤最后清仓窗口。清理夏季库存，为秋冬新品腾出仓储和流量资源。</div></div>
+<div class="timeline-item"><div class="month">8月 — 早秋爆发期</div><div class="desc">主推长袖T恤、薄外套、衬衫。万圣节元素小量上架（占比约20%）。欧洲市场比美国提前3-4周启动。</div></div>
+<div class="timeline-item"><div class="month">9月 — 旺季备货期</div><div class="desc">主推卫衣、休闲裤、针织衫。拉美重点：短裤、T恤反季热卖。欧美市场全面上架初秋薄外套。</div></div>
+<div class="timeline-item"><div class="month">10月 — 深秋主推期</div><div class="desc">主推夹克、针织衫、风衣。万圣节主题全面爆发。开始测试连帽圆领卫衣。</div></div>
+<div class="timeline-item"><div class="month">11月 — 冬季爆发期</div><div class="desc">主推棉服、厚外套、毛衣。黑五网一流量高峰，备货需提前30-45天。感恩节主题商品热销。</div></div>
+<div class="timeline-item"><div class="month">12月 — 深冬收尾期</div><div class="desc">主推羽绒服、加绒裤装、配件。圣诞+元旦双节驱动。1月开始春款预热，需提前规划。</div></div>
 </div>
-<div class="timeline-item">
-<div class="month">8月 — 早秋爆发期</div>
-<div class="desc">主推长袖T恤、薄外套、衬衫。节日元素切入：万圣节元素小量上架（占比约20%）。欧洲市场比美国提前3-4周启动。</div>
-</div>
-<div class="timeline-item">
-<div class="month">9月 — 旺季备货期</div>
-<div class="desc">主推卫衣、休闲裤、针织衫。拉美重点：短裤、T恤反季热卖。欧美市场：全面上架初秋薄外套。</div>
-</div>
-<div class="timeline-item">
-<div class="month">10月 — 深秋主推期</div>
-<div class="desc">主推夹克、针织衫、风衣。万圣节主题全面爆发。开始测试连帽圆领卫衣。</div>
-</div>
-<div class="timeline-item">
-<div class="month">11月 — 冬季爆发期</div>
-<div class="desc">主推棉服、厚外套、毛衣。黑五网一流量高峰，备货需提前30-45天。感恩节主题商品热销。</div>
-</div>
-<div class="timeline-item">
-<div class="month">12月 — 深冬收尾期</div>
-<div class="desc">主推羽绒服、加绒裤装、配件。圣诞+元旦双节驱动。注意：1月开始春款预热，需提前规划。</div>
-</div>
-</div>
-
-<h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">备货节奏汇总</h3>
 <table>
 <tr><th>月份</th><th>主推品类</th><th>备货窗口期</th><th>关键节点</th></tr>
 <tr><td>7月</td><td>POLO衫、短裤</td><td>5月中-6月</td><td>夏季清仓</td></tr>
@@ -146,216 +133,82 @@ table tr:hover{background:#FFF5EB}
 <div class="section" id="ch2">
 <h2><span class="num">2</span>拉美蓝海区域掘金</h2>
 <p class="intro">拉美电商市场增速远超欧美，渗透率仅14%，是最后一片蓝海。</p>
-
 <div class="stats">
-<div class="stat-card">
-<div class="number">1.61万亿</div>
-<div class="label">电商市场规模</div>
+<div class="stat-card"><div class="number">1.61万亿</div><div class="label">电商市场规模</div></div>
+<div class="stat-card"><div class="number">10.85%</div><div class="label">年增长率</div></div>
+<div class="stat-card"><div class="number">14%</div><div class="label">电商渗透率</div></div>
+<div class="stat-card"><div class="number">5.6亿</div><div class="label">总人口</div></div>
 </div>
-<div class="stat-card">
-<div class="number">10.85%</div>
-<div class="label">年增长率</div>
-</div>
-<div class="stat-card">
-<div class="number">14%</div>
-<div class="label">电商渗透率</div>
-</div>
-<div class="stat-card">
-<div class="number">5.6亿</div>
-<div class="label">总人口</div>
-</div>
-</div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">Y2模式三步开店</h3>
 <div class="steps">
-<div class="step-card">
-<div class="step-num">STEP 1</div>
-<div class="step-title">注册账号</div>
-<div class="step-desc">零门槛注册TEMU拉美站点卖家账号，无需本地仓储</div>
+<div class="step-card"><div class="step-num">STEP 1</div><div class="step-title">注册账号</div><div class="step-desc">零门槛注册TEMU拉美站点卖家账号，无需本地仓储</div></div>
+<div class="step-card"><div class="step-num">STEP 2</div><div class="step-title">选品上架</div><div class="step-desc">针对拉美市场偏好选品，反季商品尤其热卖</div></div>
+<div class="step-card"><div class="step-num">STEP 3</div><div class="step-title">开始销售</div><div class="step-desc">平台提供物流和售后支持，卖家专注选品和运营</div></div>
 </div>
-<div class="step-card">
-<div class="step-num">STEP 2</div>
-<div class="step-title">选品上架</div>
-<div class="step-desc">针对拉美市场偏好选品，反季商品尤其热卖</div>
-</div>
-<div class="step-card">
-<div class="step-num">STEP 3</div>
-<div class="step-title">开始销售</div>
-<div class="step-desc">平台提供物流和售后支持，卖家专注选品和运营</div>
-</div>
-</div>
-
-<div class="tags">
-<span class="tag">巴西</span><span class="tag">墨西哥</span><span class="tag">阿根廷</span><span class="tag">智利</span><span class="tag">哥伦比亚</span><span class="tag">反季热卖</span><span class="tag">零门槛入驻</span>
-</div>
+<div class="tags"><span class="tag">巴西</span><span class="tag">墨西哥</span><span class="tag">阿根廷</span><span class="tag">智利</span><span class="tag">哥伦比亚</span><span class="tag">反季热卖</span><span class="tag">零门槛入驻</span></div>
 </div>
 
 <div class="section" id="ch3">
 <h2><span class="num">3</span>标题 & 视觉优化</h2>
 <p class="intro">搜索流量与推荐流量双驱动，标题决定曝光，视觉决定转化。</p>
-
 <div class="compare">
-<div class="compare-card bad">
-<h4>常见误区</h4>
-<ul>
-<li>标题堆砌关键词，可读性差</li>
-<li>首图模糊或信息过载</li>
-<li>轮播图缺乏逻辑顺序</li>
-<li>忽略移动端展示效果</li>
-<li>只投站外广告，忽视站内推荐</li>
-</ul>
+<div class="compare-card bad"><h4>常见误区</h4><ul><li>标题堆砌关键词，可读性差</li><li>首图模糊或信息过载</li><li>轮播图缺乏逻辑顺序</li><li>忽略移动端展示效果</li><li>只投站外广告，忽视站内推荐</li></ul></div>
+<div class="compare-card good"><h4>正确做法</h4><ul><li>标题公式化，兼顾搜索和阅读</li><li>首图突出卖点，干净清晰</li><li>轮播图三步说服体系</li><li>移动端优先设计</li><li>站内推荐流量 > 站外广告</li></ul></div>
 </div>
-<div class="compare-card good">
-<h4>正确做法</h4>
-<ul>
-<li>标题公式化，兼顾搜索和阅读</li>
-<li>首图突出卖点，干净清晰</li>
-<li>轮播图三步说服体系</li>
-<li>移动端优先设计</li>
-<li>站内推荐流量 > 站外广告</li>
-</ul>
-</div>
-</div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">万能标题公式</h3>
 <div class="formula-box">
-<p style="color:var(--text-light);font-size:0.9em">好的标题 = 搜索流量 + 点击率的双重保障</p>
+<p style="color:#666;font-size:0.88em">好的标题 = 搜索流量 + 点击率的双重保障</p>
 <p class="formula">核心词 + 属性词 + 场景词 + 尺码词</p>
-<p style="color:var(--text-light);font-size:0.85em">示例：Men's Cotton Hoodie Casual Street Style Fall Spring All Sizes</p>
+<p style="color:#666;font-size:0.83em">示例：Men's Cotton Hoodie Casual Street Style Fall Spring All Sizes</p>
 </div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">轮播图三步说服体系</h3>
 <div class="steps">
-<div class="step-card">
-<div class="step-num">第1张</div>
-<div class="step-title">首图吸睛</div>
-<div class="step-desc">高清产品主图，突出核心卖点，3秒抓住买家注意力</div>
-</div>
-<div class="step-card">
-<div class="step-num">第2-4张</div>
-<div class="step-title">细节展示</div>
-<div class="step-desc">面料特写、版型上身、多角度展示，消除购买疑虑</div>
-</div>
-<div class="step-card">
-<div class="step-num">第5-6张</div>
-<div class="step-title">卖点强化</div>
-<div class="step-desc">尺码表、场景图、搭配推荐，推动最终下单决策</div>
-</div>
+<div class="step-card"><div class="step-num">第1张</div><div class="step-title">首图吸睛</div><div class="step-desc">高清产品主图，突出核心卖点，3秒抓住买家注意力</div></div>
+<div class="step-card"><div class="step-num">第2-4张</div><div class="step-title">细节展示</div><div class="step-desc">面料特写、版型上身、多角度展示，消除购买疑虑</div></div>
+<div class="step-card"><div class="step-num">第5-6张</div><div class="step-title">卖点强化</div><div class="step-desc">尺码表、场景图、搭配推荐，推动最终下单决策</div></div>
 </div>
 </div>
 
 <div class="section" id="ch4">
 <h2><span class="num">4</span>爆款延改方法论</h2>
 <p class="intro">从已有爆款中提取成功要素，通过差异化延改打造自己的爆款矩阵。</p>
-
 <h3 style="color:var(--orange);margin:20px 0 10px;font-size:1.1em">非图案款 — 五大延改方向</h3>
 <div class="steps">
-<div class="step-card">
-<div class="step-num">方向1</div>
-<div class="step-title">组合延改</div>
-<div class="step-desc">上衣+裤子套装、内搭+外套组合，提升客单价</div>
+<div class="step-card"><div class="step-num">方向1</div><div class="step-title">组合延改</div><div class="step-desc">上衣+裤子套装、内搭+外套组合，提升客单价</div></div>
+<div class="step-card"><div class="step-num">方向2</div><div class="step-title">版型延改</div><div class="step-desc">修身改宽松、短款改长款，覆盖不同身形偏好</div></div>
+<div class="step-card"><div class="step-num">方向3</div><div class="step-title">面料延改</div><div class="step-desc">棉改涤纶、薄改加绒，适配不同季节和价格带</div></div>
+<div class="step-card"><div class="step-num">方向4</div><div class="step-title">辅料延改</div><div class="step-desc">拉链改纽扣、加口袋设计，微创新差异化</div></div>
+<div class="step-card"><div class="step-num">方向5</div><div class="step-title">设计元素延改</div><div class="step-desc">添加拼接、刺绣、压线等设计细节，提升质感</div></div>
 </div>
-<div class="step-card">
-<div class="step-num">方向2</div>
-<div class="step-title">版型延改</div>
-<div class="step-desc">修身改宽松、短款改长款，覆盖不同身形偏好</div>
-</div>
-<div class="step-card">
-<div class="step-num">方向3</div>
-<div class="step-title">面料延改</div>
-<div class="step-desc">棉改涤纶、薄改加绒，适配不同季节和价格带</div>
-</div>
-<div class="step-card">
-<div class="step-num">方向4</div>
-<div class="step-title">辅料延改</div>
-<div class="step-desc">拉链改纽扣、加口袋设计，微创新差异化</div>
-</div>
-<div class="step-card">
-<div class="step-num">方向5</div>
-<div class="step-title">设计元素延改</div>
-<div class="step-desc">添加拼接、刺绣、压线等设计细节，提升质感</div>
-</div>
-</div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">印花图案款差异化策略</h3>
 <div class="compare">
-<div class="compare-card bad">
-<h4>避免做法</h4>
-<ul>
-<li>满印图案直接复制</li>
-<li>大面积印花无重点</li>
-<li>图案与品类不匹配</li>
-</ul>
+<div class="compare-card bad"><h4>避免做法</h4><ul><li>满印图案直接复制</li><li>大面积印花无重点</li><li>图案与品类不匹配</li></ul></div>
+<div class="compare-card good"><h4>推荐策略</h4><ul><li>满印改胸花（局部印花）</li><li>大面积改小面积点缀</li><li>图案风格与品类调性一致</li></ul></div>
 </div>
-<div class="compare-card good">
-<h4>推荐策略</h4>
-<ul>
-<li>满印改胸花（局部印花）</li>
-<li>大面积改小面积点缀</li>
-<li>图案风格与品类调性一致</li>
-</ul>
-</div>
-</div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">延改应用场景</h3>
-<div class="tags">
-<span class="tag">女装改男装</span><span class="tag">童装改男装</span><span class="tag">情侣装延伸</span><span class="tag">亲子装延伸</span><span class="tag">季节款转换</span><span class="tag">跨品类延展</span>
-</div>
+<div class="tags"><span class="tag">女装改男装</span><span class="tag">童装改男装</span><span class="tag">情侣装延伸</span><span class="tag">亲子装延伸</span><span class="tag">季节款转换</span><span class="tag">跨品类延展</span></div>
 </div>
 
 <div class="section" id="ch5">
 <h2><span class="num">5</span>流量异常处理</h2>
 <p class="intro">流量突然下降怎么办？先排除误区，再按流程排查，最后精准修复。</p>
-
 <div class="compare">
-<div class="compare-card bad">
-<h4>常见误区</h4>
-<ul>
-<li>盲目调价 — 越调越差</li>
-<li>频繁改标题 — 权重清零</li>
-<li>大量删SKU — 链接降权</li>
-<li>慌张下架 — 前功尽弃</li>
-</ul>
+<div class="compare-card bad"><h4>常见误区</h4><ul><li>盲目调价 — 越调越差</li><li>频繁改标题 — 权重清零</li><li>大量删SKU — 链接降权</li><li>慌张下架 — 前功尽弃</li></ul></div>
+<div class="compare-card good"><h4>正确流程</h4><ul><li>确认异常 — 对比同期数据</li><li>排查原因 — 逐项检查</li><li>针对性修复 — 精准操作</li><li>持续观察 — 3-7天恢复期</li></ul></div>
 </div>
-<div class="compare-card good">
-<h4>正确流程</h4>
-<ul>
-<li>确认异常 — 对比同期数据</li>
-<li>排查原因 — 逐项检查</li>
-<li>针对性修复 — 精准操作</li>
-<li>持续观察 — 3-7天恢复期</li>
-</ul>
-</div>
-</div>
-
 <h3 style="color:var(--orange);margin:25px 0 10px;font-size:1.1em">三种有效应对方法</h3>
 <div class="error-list">
-<div class="error-item">
-<div class="icon">1</div>
-<div class="content">
-<h4>保持稳定运营</h4>
-<p>不盲目调整，维持正常上架节奏和广告投放，等待算法自我修正。大部分流量波动是平台算法调整导致，2-3天可自动恢复。</p>
+<div class="error-item"><div class="icon">1</div><div class="content"><h4>保持稳定运营</h4><p>不盲目调整，维持正常上架节奏和广告投放，等待算法自我修正。大部分流量波动是平台算法调整导致，2-3天可自动恢复。</p></div></div>
+<div class="error-item"><div class="icon">2</div><div class="content"><h4>优化广告投放</h4><p>适当增加广告预算，提升曝光量。精准定向核心人群，提高广告ROI，用广告流量弥补自然流量下降。</p></div></div>
+<div class="error-item"><div class="icon">3</div><div class="content"><h4>联系平台客服</h4><p>通过官方渠道反馈问题，获取流量异常的具体原因。如确认被误判，可申请人工审核恢复权重。</p></div></div>
 </div>
-</div>
-<div class="error-item">
-<div class="icon">2</div>
-<div class="content">
-<h4>优化广告投放</h4>
-<p>适当增加广告预算，提升曝光量。精准定向核心人群，提高广告ROI，用广告流量弥补自然流量下降。</p>
-</div>
-</div>
-<div class="error-item">
-<div class="icon">3</div>
-<div class="content">
-<h4>联系平台客服</h4>
-<p>通过官方渠道反馈问题，获取流量异常的具体原因。如确认被误判，可申请人工审核恢复权重。</p>
-</div>
-</div>
+<div class="tags"><span class="tag">数据对比</span><span class="tag">逐项排查</span><span class="tag">精准修复</span><span class="tag">3-7天恢复</span><span class="tag">官方反馈</span></div>
 </div>
 
-<div class="tags">
-<span class="tag">数据对比</span><span class="tag">逐项排查</span><span class="tag">精准修复</span><span class="tag">3-7天恢复</span><span class="tag">官方反馈</span>
-</div>
+<div class="section" id="pages">
+<h2><span class="num">PDF</span>原始页面（点击放大）</h2>
+<p class="intro">以下是PDF文档38页完整内容，点击任意图片可放大查看，支持左右翻页。</p>
+<div class="page-gallery" id="gallery"></div>
 </div>
 
 </div>
@@ -364,8 +217,63 @@ table tr:hover{background:#FFF5EB}
 <div class="divider"></div>
 <p>TEMU 男装运营策略 · 涨销量三板斧</p>
 <p style="margin-top:8px">美区秋冬备货 · 拉美蓝海掘金 · 标题视觉优化 · 爆款延改 · 流量异常处理</p>
-<p style="margin-top:8px;opacity:0.6">基于38页完整PPT整理</p>
 </div>
 
+<div class="lightbox" id="lightbox">
+<span class="close" onclick="closeLightbox()">&times;</span>
+<span class="nav-btn prev" onclick="navImage(-1)">&#8249;</span>
+<span class="nav-btn next" onclick="navImage(1)">&#8250;</span>
+<img id="lightbox-img" src="">
+<div class="counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+var images = [];
+for (var i = 1; i <= 38; i++) {
+    var num = String(i).padStart(3, '0');
+    images.push('images/page_' + num + '.jpg');
+}
+
+var gallery = document.getElementById('gallery');
+images.forEach(function(src, idx) {
+    var card = document.createElement('div');
+    card.className = 'page-card';
+    var label = document.createElement('div');
+    label.className = 'page-label';
+    label.textContent = '第 ' + (idx + 1) + ' 页 / 共 38 页';
+    var img = document.createElement('img');
+    img.src = src;
+    img.loading = 'lazy';
+    img.onclick = function() { openLightbox(idx); };
+    card.appendChild(label);
+    card.appendChild(img);
+    gallery.appendChild(card);
+});
+
+var currentIdx = 0;
+function openLightbox(idx) {
+    currentIdx = idx;
+    document.getElementById('lightbox-img').src = images[idx];
+    document.getElementById('lightbox-counter').textContent = (idx + 1) + ' / ' + images.length;
+    document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+}
+function navImage(dir) {
+    currentIdx = (currentIdx + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[currentIdx];
+    document.getElementById('lightbox-counter').textContent = (currentIdx + 1) + ' / ' + images.length;
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navImage(-1);
+    if (e.key === 'ArrowRight') navImage(1);
+});
+</script>
 </body>
 </html>
